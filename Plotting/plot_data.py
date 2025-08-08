@@ -4,7 +4,7 @@ import numpy as np
 import seaborn as sns
 
 # --- 1. Specify Your Data File and Column Names ---
-file_path = '1585\AR4 hold 10aoa 5twist.csv'  # <--- SET YOUR FILE PATH HERE
+file_path = '1585\p_16x5.4 prop 2300 hold.csv'  # <--- SET YOUR FILE PATH HERE
 
 # --- Column Names ---
 rpm_column = 'Motor Electrical Speed (RPM)'
@@ -32,6 +32,7 @@ print(f"Removed {initial_rows - len(df)} rows with invalid thrust or power value
 # --- 4. Calculate Propulsion Efficiency ---
 # Efficiency (g/W) = (Thrust in grams) / (Power in Watts)
 df['propulsion_efficiency'] = (df[thrust_column] / g * 1000) / df[power_column]
+# df['propulsion_efficiency'] = df[thrust_column] / df[power_column]
 
 # Filter out unrealistically high efficiency values
 df.loc[df['propulsion_efficiency'] > efficiency_threshold, 'propulsion_efficiency'] = np.nan
